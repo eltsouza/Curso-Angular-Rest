@@ -5,14 +5,20 @@
     </div>
     <div class="form-group">
       <label for="user">Email:</label>
-      <input type="email" class="form-control" [(ngModel)]= "usuario.login" id="login" name="login" placeholder="E-mail do usuario" required> 
+      <input type="email" class="form-control" #email="ngModel" [(ngModel)]= "usuario.login" id="login" name="login" placeholder="E-mail do usuario" required> 
+      <div *ngIf="email.invalid" class="alert alert-danger">
+         O campo login esta incorreto
+      </div>
     </div>
     <div class="form-group">
       <label for="senha">Senha:</label>
-      <input type="password" class="form-control" [(ngModel)]= "usuario.senha" id="senha" name="senha" placeholder="Senha do usuario" required> 
+      <input type="password" class="form-control" #senha="ngModel" [(ngModel)]= "usuario.senha" id="senha" name="senha" placeholder="Senha do usuario" required> 
+      <div *ngIf="senha.invalid" class="alert alert-danger">
+         O campo senha esta incorreto
+      </div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="login()">Acessar</button>
+    <button type="button"[disabled]="email.invalid // senha.invalid" class="btn btn-primary" (click)="login()">Acessar</button>
 
   </form>
 
